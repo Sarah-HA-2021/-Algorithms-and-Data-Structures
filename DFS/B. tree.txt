@@ -1,0 +1,63 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+ 
+ 
+vector<int>  parent; // intilize to -1   // parent[s] = s 
+vector<int> colors; // intilize to 0 
+vector <vector<int>> graph ; 
+ 
+ 
+// unrechable  remains white 
+   void DFS (int s , int par)
+   
+   {  colors[s]= 1; // grey 
+      parent[s] = par; // assign parent 
+      
+      for (int i = 0; i< graph[s].size(); i++ )    // neigbours 
+        {  if  (colors [graph[s][i]] == 0)
+           DFS (graph[s][i] , s) ;
+        }
+        
+        colors[s]= 2; 
+   }
+ 
+ 
+int main()
+{  int n ;
+   cin>>n ;
+   parent.resize(n,-1);
+   colors.resize(n,0);
+   graph.resize(n);
+   // int  a , b ; 
+ 
+    //cin>> a >> b;
+    int m = 0 ;
+    int flage = 0;
+    
+    for ( int i= 0 ; i < n ; i ++)
+    for ( int j= 0 ; j <n ; j ++)
+    { int l ; 
+      cin>> l ; 
+      if (l == 1)
+      {graph[i].push_back(j);
+      m++;}
+    }
+  
+  
+ 
+ 
+  DFS (0 , 0);
+   
+ 
+   for ( int i= 0 ; i < n ; i ++)
+     if (parent[i] == -1 )
+      flage = 1; 
+      
+if ((m/2 == n -1) &&  flage == 0 )
+   cout<< "YES";
+ 
+else 
+cout<<"NO";
+    return 0;
+}

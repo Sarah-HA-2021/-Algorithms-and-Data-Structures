@@ -1,0 +1,118 @@
+#include <iostream>
+#include<vector>
+#include <bits/stdc++.h> 
+using namespace std;
+ 
+vector <vector<int>> graph ; 
+vector<int>  r;
+vector<int>  parent; // intilize to -1   // parent[s] = s 
+vector<int> colors; // intilize to 0 
+vector <int> path;
+vector <int> result;
+int ct = 0;
+int last_node;
+ 
+// unrechable  remains white 
+   void  DFS (int s , int par)
+   
+   {   //path.push_back(s);
+     ct ++;
+     result.push_back(s);
+      colors[s]= 1; // grey 
+      parent[s] = par; // assign parent 
+      last_node=s;
+      //if (s==b) 
+      //return;
+      
+      for (int i = 0; i< graph[s].size(); i++ )    // neigbours 
+        {  if  (colors [graph[s][i]] == 0)
+           DFS (graph[s][i] , s ) ;
+        }
+        
+        colors[s]= 2; 
+        
+   }
+ 
+ 
+ 
+ 
+int main()
+{   
+    //  fast input
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int n , m ;
+    cin>> n >> m; 
+    int component_index =0 ;
+    
+   graph.resize(n);
+   parent.resize(n,-1);
+   colors.resize(n,0);
+   r.resize(n,0);  // number of connected component for each vertix 
+    
+    
+    for ( int  i = 0 ; i < m ; i++)
+     {  int l , k ;
+        cin>> l >> k ;
+        
+        graph[l-1].push_back(k-1);
+        graph[k-1].push_back(l-1); 
+     }
+     
+     
+ 
+ 
+   for ( int  i = 0 ; i < n ; i++)
+    {   if ((r[i]==0))
+        
+        {  // parent.clear();
+            parent.resize(n,-1);
+            result.clear();
+            
+            DFS (i, i);
+          
+            for (int j = 0 ; j <result.size(); j++)
+            r[result[j]] = ct;
+            
+           // int excluded = count(parent.begin(), parent.end(), -1);
+            //int included = n - excluded ;
+            //cout<<parent[0]<< endl;
+            //cout <<"icluded "<< included  <<endl;
+           // for (int u = 0 ; u < n ;u++)
+             //if (parent[u]!=-1)
+             // r[u]=ct;
+            //while ( j < n && j >=0)
+             // {
+                //   if ( parent[j]==-1 || result.size() ==n-1 )
+                //   {  result.push_back(j);
+                 //      for (int k = 0 ; k <result.size() ; k ++)
+                 //     r[result[k]]=count;
+                  //     break;
+                  //  } // if indside while 
+                   
+                   
+                   //else {result.push_back(j);
+                   //   j = parent[j];} // else 
+                   //
+                   
+             // }// while
+            
+            //for (int u = 0 ;u < parent.size() ; u ++)
+            //cout<< parent[u];
+               
+             //cout<< endl;
+             //cout<< last_node<<endl;
+           
+            
+        } // if 
+        
+         ct = 0 ;
+      
+    }// for  
+ 
+   for (int i = 0 ; i < n ; i ++)       
+      cout << r[i] << " "  ;
+       
+    return 0;
+}

@@ -1,0 +1,55 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+ 
+bool func (string s)
+{  
+    stack <char> my_stack;
+    char l ;   
+     for ( int i = 0 ; i < s.length() ; i++)
+   {   l =s[i];
+      
+   
+        if ( ((l == '{' || l == '[' || l == '(') && i== s.length()-1)  || ((l==')' || l=='}' || l==']') &&  my_stack.empty())   ) 
+       {return false;}
+       
+          else  if ( l == '{' || l == '[' || l == '(' ) 
+       {my_stack.push(l);}
+       
+    
+       else if  (l==')')
+       { if ( int(my_stack.top())+1 == int(l)  )
+           //return false;
+         my_stack.pop(); 
+         
+         else return false;
+       }// else if 
+       
+       else {
+           if ( int(my_stack.top())+2 == int(l) )
+          // return false;
+         my_stack.pop(); 
+         else return false;
+       }// else 
+   
+   } // for 
+   
+   if (my_stack.empty())
+   return true;
+   
+   else 
+   return false ;
+}
+ 
+int main()
+{   string s; 
+    cin>>s;
+    if (func(s)) 
+    cout<<"YES";
+    else
+    cout<<"NO";
+ 
+ 
+ 
+    return 0;
+}

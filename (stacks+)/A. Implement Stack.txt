@@ -1,0 +1,62 @@
+/******************************************************************************
+ 
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+ 
+*******************************************************************************/
+ 
+#include <iostream>
+#include <vector>
+#include <algorithm>
+//#include <math.c>
+#include<cmath>
+using namespace std;
+ 
+int main()
+{
+    int n;
+    cin>>n;
+    //vector<int> stack;
+    int a [100000];
+    int i =0;
+    
+    for ( int j = 0 ; j <n ; j++ )
+    { int l ; 
+      int k;
+      cin >> l ; 
+      if (l==1)
+      {cin>>k;
+      a[i]=k;
+      //cout<<k;
+      //cout<<a[i];
+      i++;
+       //break;
+       }
+       
+       else {  //cout<< i <<" ";
+       cout<< a[i-1]<<endl;
+       i--;
+       //cout<<a[i]<<endl;
+      }
+    
+     // if (l == 1 )
+     // {
+         // int k ;
+        //  cin>> k;
+         // a[i]= k ;
+         // i++;
+          
+     // }
+      
+     // else if (l==2) {  cout<<"jj";
+          //cout << a[i] <<endl;
+            //i--;
+          
+      //}
+        
+    }
+    
+  // cout<<a[0];
+    return 0;
+}

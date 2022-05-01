@@ -1,0 +1,55 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#include<stdio.h>
+#include<stdlib.h>
+ 
+using namespace std;
+ 
+int main()
+{
+  stack <int> s;
+  int l1;
+  int l2;
+  int k ; 
+ 
+   char x;
+   while(cin >> x) {
+       
+   if (x== '+' || x== '-' || x== '*')    
+   {   l1 = (s.top());
+       s.pop();
+       l2 = (s.top());
+       s.pop();
+       
+       if (x== '+')
+      { k = l1 + l2; 
+     // cout <<" plus";
+          
+      }
+       else if (x== '-')
+       {k= l2 - l1;
+      //  cout <<"minus";
+      }
+       else 
+      {// cout << l1 << " " << l2;
+          k = l1 * l2;
+      //cout <<"mult";}
+      
+      // cout << k<< x<<
+       //endl;
+       }
+       s.push(k);
+   }
+   
+   else { s.push(x - '0');
+   //  cout<< x - '0' << "  insetrted";
+         // cout<<x - '0';
+       
+   }
+   
+}
+ 
+//cout << (static_cast<long>('1'));
+cout<<(s.top());
+    return 0;
+}

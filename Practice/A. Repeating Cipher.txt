@@ -1,0 +1,41 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+int main()
+{    int n;
+ //= s.length();
+ cin>>n;
+    string s;
+    cin>>s;
+    
+ cout << s[0];
+ 
+ 
+ int sum = 1;
+ 
+ //while (sum < n)
+ //{   
+  // cout << a[i]  ;
+  // i= i 
+     
+     
+ //}
+ 
+int j = 2;
+ int i = 1; // index 
+while (sum < n)
+{
+   cout<<s[i] ;
+   i = i +j;
+   sum =sum+j;
+   j++;
+    
+    
+}
+ 
+//for (int  i = 1 ; i < n ; i++)
+ 
+ 
+    return 0;
+}

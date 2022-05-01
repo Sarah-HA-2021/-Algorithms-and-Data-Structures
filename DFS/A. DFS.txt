@@ -1,0 +1,123 @@
+#include <iostream>
+#include <vector>
+#include <bits/stdc++.h>
+using namespace std;
+ 
+ 
+vector<int>  parent; // intilize to -1   // parent[s] = s 
+vector<int> colors; // intilize to 0 
+vector <vector<int>> graph ; 
+vector <int> path;
+ 
+ 
+// unrechable  remains white 
+   void DFS (int s , int par , int b )
+   
+   {   //path.push_back(s);
+   
+      
+    
+      colors[s]= 1; // grey 
+      parent[s] = par; // assign parent 
+      
+      if (s==b) 
+      return;
+      
+      for (int i = 0; i< graph[s].size(); i++ )    // neigbours 
+        {  if  (colors [graph[s][i]] == 0)
+           DFS (graph[s][i] , s , b) ;
+        }
+        
+        colors[s]= 2; 
+   }
+ 
+ 
+int main()
+{  int n ;
+   cin>>n ;
+   parent.resize(n,-1);
+   colors.resize(n,0);
+   graph.resize(n);
+    int  a , b ; 
+    int flag = 0;
+    
+    cin>> a >> b;
+    
+    for ( int i= 0 ; i < n ; i ++)
+    for ( int j= 0 ; j <n ; j ++)
+    { int l ; 
+      cin>> l ; 
+      if (l == 1)
+      graph[i].push_back(j);
+    }
+  
+  
+  if (a==b)
+  { cout << 0 << "\n" <<  a ;}
+ 
+ else { 
+  DFS (a-1 , a-1 , b-1);
+  
+ 
+   
+  //  b-1 , a-1
+   //vector <int> path;
+  // int i = a-1 ;
+   //int count = 0;
+   //int flage = 0 ;
+   
+  // while  (!(i < 0 && i > n && i == b-1 ))
+    //{  
+        //path.push_back(i);
+        
+       // if ((parent[i]) != -1)
+        // {path.push_back(parent[i]);
+         // i = parent[i];
+         // count++;}
+          
+        //else { cout << -1 ; flage=1; break; }
+        
+   // }
+   
+  // for ( int i= 0 ; i < n ; i ++)
+  // cout << parent[i] << " ";  
+   //cout<<endl;
+  
+if (parent[b-1] == -1)
+cout<< -1 ;
+ 
+ 
+else {
+    //cout << path.size() - 1 << endl;
+//for ( int i= 0 ; i < n ; i ++)
+  // {//cout << stac.top()+1 << " ";  
+   //stac.pop();}
+   //cout<< parent[i] << " " ;
+ //} 
+ 
+ //}
+ 
+ int i = b-1;
+ vector <int> result;
+ 
+ while ( i < n && i >=0)
+ { 
+     if (i== a-1)
+     {   result.push_back(i+1);
+         cout << result.size() -1 <<endl;
+         for (int i =result.size() -1 ; i>=0 ; i -- )
+         cout << result[i] <<" ";
+         break;}
+     
+     else if (parent[i]==-1)
+     {cout << -1;
+      break;}
+      
+     else {result.push_back(i+1);
+          i = parent[i];}
+     
+ }
+}
+ }
+    return 0;
+}

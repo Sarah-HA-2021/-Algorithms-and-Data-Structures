@@ -1,0 +1,97 @@
+#include <iostream>
+#include<vector>
+#include <queue>
+using namespace std;
+ 
+queue<pair<int,int>> q ;
+ 
+vector<vector<int>> Distance(24,vector<int>(60,-1));
+vector<int> parent;
+ 
+ 
+ 
+ 
+int main()
+{
+    int a1  , b1 , a2 , b2;
+    cin>> a1 >> b1 >> a2 >> b2;  // there should be a discussion here  if they are both zeros
+    
+    int  h1 , m1 ;    
+    cin>> h1 >> m1;
+    
+    int h2 , m2; 
+    cin>> h2 >> m2; 
+    
+    //Distance.resize(1500,-1);
+    //parent.resize(1500,-1);
+    
+    //cout << Distance[10][0]<<endl;
+    
+    
+    pair<int,int> start = {h1 , m1};
+    pair<int,int> ennd = {h2 , m2} ;
+    
+    //int end = convert_to_minutes (h2 , m2) ;
+    
+ 
+    
+    if ((h1 == h2)&&(m1 == m2))
+     cout << 0;
+     
+  // else if (h1 > h2) // I am not very sure about this condition 
+   // cout << -1;
+   
+  
+   
+   else {
+       
+    q.push(start);
+    Distance[h1][m1]=0;
+    //parent[start]=start;
+       
+      
+      while (!(q.empty()))
+        {
+          int curr1= q.front().first;
+          int curr2= q.front().second;
+         // cout << curr2 << " "<<curr2 <<endl;
+          q.pop();
+          
+          if ( (curr1==h2) && (curr2==m2) ) // we reach the point
+          break;
+          
+          //if (curr1>h2)
+           //continue;
+           
+          // two posobilities 
+          
+            int x1 = (curr1 + a1 ) % 24;
+            int y1 = (curr2 + b1 ) %60;
+            int  x2 = (curr1 + a2) % 24;
+            int y2 =(curr2 + b2 ) %60;
+            
+               if (Distance[x1][y1]==-1)
+        { //parent[x1]=curr;
+         Distance[x1][y1] = (Distance[curr1][curr2]) +1;
+         q.push({x1,y1});
+         }
+            
+            
+                        if (Distance[x2][y2]==-1)
+        { //parent[x2]=curr;
+         Distance[x2][y2]  =(Distance[curr1][curr2]) +1;
+         q.push({x2,y2});
+         }
+           
+   
+            
+      
+            
+        }
+          
+  cout << Distance[h2][m2];
+   }
+    
+  // 
+    return 0;
+}

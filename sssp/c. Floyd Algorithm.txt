@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+#include <bits/stdc++.h>
+using namespace std;
+ 
+vector <vector<long long>> graph ; 
+vector <vector<long long>> d ;
+ 
+int main()
+{
+    int n ;
+    
+    cin >> n ; 
+    //graph.resize(n,0);
+    d.resize(n,vector<long long>(n,INT_MAX));
+   
+    for ( int i= 0 ; i < n ; i ++)
+    for ( int j= 0 ; j <n ; j ++)
+    { long long l ; 
+      cin>> l ; 
+      if (l >= 1)
+     // graph[i].push_back(j);
+      d[i][j]= l ;
+      
+      if (i == j)
+     d[i][j]=0;
+    }
+ 
+ 
+ 
+for (int u = 0; u<n;u++)
+    for (int i = 0; i < n; i++)
+       for (int j  = 0; j < n; j++)
+         if (d[i][u] != INT_MAX && d[u][j] != INT_MAX)
+         d[i][j] = min(d[i][j], d[i][u] + d[u][j]);
+      
+      
+      
+    for ( int i= 0 ; i < n ; i ++)
+    {
+    for ( int j= 0 ; j <n ; j ++)
+     {if (d[i][j] == INT_MAX) cout << 0 <<" ";
+    else
+     cout << d[i][j] << " ";}
+     
+     cout << endl; }
+     
+ 
+    return 0;
+}

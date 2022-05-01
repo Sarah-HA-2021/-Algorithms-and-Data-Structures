@@ -1,0 +1,63 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+int main()
+{ 
+  stack <int> s1;
+  stack <int> s2;
+  
+  int n;
+  
+  cin>>n;
+  
+  char x ;
+  
+  while (cin>>x)
+  {
+      if (x== '+')
+      {  int l ; 
+         cin>> l ;
+         s1.push(l);
+         
+          cout<< 1 <<" "<<'+'<<" "<< l << endl;
+      }
+      
+      else 
+      {
+        // cout <<x << endl; 
+          if (s2.empty())
+          {
+              while (! s1.empty())
+              {
+                 cout<< 1 <<" "<<'-'<<" "<< s1.top() << endl;
+                 s2.push(s1.top());
+                  cout<< 2 <<" "<<'+'<<" "<< s1.top() << endl;
+                  s1.pop();
+                  
+              }
+              
+          }
+          
+          cout<< 2 <<" "<<'-'<<" "<< s2.top() << endl;
+          s2.pop();
+      }
+      
+      
+      
+  }
+  
+    // vector <int> a; 
+ 
+//int n ; 
+ 
+//cin >> n ; 
+ 
+//cout<< (n / 2);
+ 
+//cout << n *(n+1) / 2 ; 
+   // return 0;
+}

@@ -1,0 +1,85 @@
+#include <iostream>
+#include <vector>
+#include <bits/stdc++.h>
+using namespace std;
+ 
+ 
+vector <vector<pair<int,int>>> g; 
+vector<int> d ;
+vector<int> p ;
+ 
+ 
+int main()
+{
+   int n , m ;
+ 
+   cin>>n >> m ;
+   
+ 
+   d.resize (n,INT_MAX);
+   p.resize (n,-1);
+   g.resize(n);
+   
+  int s = 0;
+  
+   if (m>=1)
+   { int x , y , l;
+    cin>> x>> y >> l ; 
+    pair <int,int> node = {y-1, l};
+    g[x-1].push_back(node);
+   // pair <int,int> node2 = {x-1, l};
+  //  g[y-1].push_back(node2);
+   }
+    // intialize
+    // s = x-1; 
+    d[s] = 0 ;
+    
+   for (int i = 1 ; i < m ; i++)
+     {
+         int x , y , l;
+         cin>> x>> y >> l ; 
+         pair <int,int> node = {y-1, l};
+         g[x-1].push_back(node);
+         
+         //pair <int,int> node2 = {x-1, l};
+         //g[y-1].push_back(node2);
+           }
+           
+           int t = 0 ;
+           while (t< n ){
+for (int k = 0 ; k < n ; k++)
+  {
+      for (int u = 0 ; u < g[k].size() ; u++) // each edge
+        {
+            pair <int , int> node = g[k][u];
+            
+            int curr_node =node.first; // node index
+            int wight = node.second; // edge wight 
+            
+            //cout << "first_node: " << k << endl;
+           // cout << "second_node: " << curr_node<<endl;
+           // cout << "wieght: "  << wight << endl; 
+            
+            //cout << d [k] << endl;
+           // cout <<  d [curr_node] + wight << endl;
+            
+            if (  d[k] != INT_MAX && (d [curr_node] > d[k] + wight) )
+               d [curr_node] = d [k] + wight;
+        }
+      
+  }
+ 
+ 
+t++;}
+ 
+ 
+for (int j =0 ; j < n ; j++)
+{   
+    if (j==0 ){;}
+    else if (d[j]==INT_MAX)
+    cout <<"NO"<<"\n";
+    else
+    cout << d[j] <<"\n";}
+ 
+    return 0;
+}
